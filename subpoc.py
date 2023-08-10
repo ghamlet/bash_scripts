@@ -15,10 +15,11 @@ def run_command(command):
     output, error = process.communicate()
     global cat
     cat = output.decode()
-    return cat
+    print(cat)
+    
 
 
-run_command("ipconfig")   
+run_command("ping 192.168.0.1")   
 
 
 coincidence = re.search(pattern, cat, flags=0)
