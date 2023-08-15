@@ -7,10 +7,10 @@ point = 0
 
 
 
-pattern = re.compile("\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}")
+pattern = r'\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}\.{1}\d{1,3}'
 
 
-def run_command(command):
+def cmd(command):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
     output, error = process.communicate()
     global cat
@@ -19,12 +19,14 @@ def run_command(command):
     
 
 
-run_command("ping 192.168.0.1")   
+cmd("ipconfig")   
 
 
-coincidence = re.search(pattern, cat, flags=0)
-if coincidence:
-    print("ipaddr", coincidence[0])
+coincidence = re.findall(pattern, cat)
+
+
+for ip in coincidence:
+    print("ipaddr", ip)
 
 # for i in range(x,len):
 #     if (cat[i] == "." or cat[i] == " ") and let == False:
